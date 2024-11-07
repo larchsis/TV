@@ -2,14 +2,12 @@ from aiohttp import ClientSession, TCPConnector
 from time import time
 import asyncio
 import re
-from urllib.parse import quote
 from utils.config import config
+from utils.tools import is_ipv6, add_url_info, remove_cache_info, get_resolution_value
 import subprocess
 
-timeout = 15
 
-
-async def get_speed(url, timeout=timeout, proxy=None):
+async def get_speed(url, timeout=config.sort_timeout, proxy=None):
     """
     Get the speed of the url
     """
@@ -20,8 +18,10 @@ async def get_speed(url, timeout=timeout, proxy=None):
         end = None
         try:
             async with session.get(url, timeout=timeout, proxy=proxy) as response:
-                resStatus = response.status
-                if resStatus == 200:
+                if response.status == 404:
+                    return float("inf")
+                content = await response.read()
+                if content:
                     end = time()
                 else:
                     return float("inf")
@@ -43,7 +43,7 @@ def is_ffmpeg_installed():
         return False
 
 
-async def ffmpeg_url(url, timeout=timeout):
+async def ffmpeg_url(url, timeout=config.sort_timeout):
     """
     Get url info by ffmpeg
     """
@@ -54,7 +54,7 @@ async def ffmpeg_url(url, timeout=timeout):
         proc = await asyncio.create_subprocess_exec(
             *args, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE
         )
-        out, err = await asyncio.wait_for(proc.communicate(), timeout=timeout + 15)
+        out, err = await asyncio.wait_for(proc.communicate(), timeout=timeout + 2)
         if out:
             res = out.decode("utf-8")
         if err:
@@ -97,89 +97,99 @@ async def check_stream_speed(url_info):
     """
     try:
         url = url_info[0]
-        video_info = await ffmpeg_url(url, timeout=timeout)
+        video_info = await ffmpeg_url(url)
         if video_info is None:
             return float("inf")
         frame, resolution = get_video_info(video_info)
         if frame is None or frame == float("inf"):
             return float("inf")
-        if resolution:
-            url_info[0] = url_info[0] + f"${resolution}"
         url_info[2] = resolution
-        return (tuple(url_info), frame)
+        return (url_info, frame)
     except Exception as e:
         print(e)
         return float("inf")
 
 
-async def get_info_with_speed(url_info):
+speed_cache = {}
+
+
+async def get_speed_by_info(
+    url_info, ffmpeg, semaphore, ipv6_proxy=None, callback=None
+):
     """
     Get the info with speed
     """
-    url, _, _ = url_info
-    url_info = list(url_info)
-    if "$" in url:
-        url = url.split("$")[0]
-    url = quote(url, safe=":/?&=$[]")
-    url_info[0] = url
-    try:
-        speed = await check_stream_speed(url_info)
-        return speed
-    except Exception:
-        return float("inf")
+    async with semaphore:
+        url, _, resolution, _ = url_info
+        url_info = list(url_info)
+        cache_key = None
+        url_is_ipv6 = is_ipv6(url)
+        if "$" in url:
+            url, _, cache_info = url.partition("$")
+            matcher = re.search(r"cache:(.*)", cache_info)
+            if matcher:
+                cache_key = matcher.group(1)
+            url_show_info = remove_cache_info(cache_info)
+        url_info[0] = url
+        if cache_key in speed_cache:
+            speed = speed_cache[cache_key][0]
+            url_info[2] = speed_cache[cache_key][1]
+            if speed != float("inf"):
+                if url_show_info:
+                    url_info[0] = add_url_info(url, url_show_info)
+                return (tuple(url_info), speed)
+            else:
+                return float("inf")
+        try:
+            if ipv6_proxy and url_is_ipv6:
+                url = ipv6_proxy + url
+            if ffmpeg:
+                speed = await check_stream_speed(url_info)
+                url_speed = speed[1] if speed != float("inf") else float("inf")
+                if url_speed == float("inf"):
+                    url_speed = await get_speed(url)
+                resolution = speed[0][2] if speed != float("inf") else None
+            else:
+                url_speed = await get_speed(url)
+                speed = (
+                    (url_info, url_speed) if url_speed != float("inf") else float("inf")
+                )
+            if cache_key and cache_key not in speed_cache:
+                speed_cache[cache_key] = (url_speed, resolution)
+            if url_show_info:
+                speed[0][0] = add_url_info(speed[0][0], url_show_info)
+            speed = (tuple(speed[0]), speed[1])
+            return speed
+        except Exception:
+            return float("inf")
+        finally:
+            if callback:
+                callback()
 
 
-async def sort_urls_by_speed_and_resolution(infoList, ffmpeg=False):
+async def sort_urls_by_speed_and_resolution(
+    data, ffmpeg=False, ipv6_proxy=None, callback=None
+):
     """
     Sort by speed and resolution
     """
-    if ffmpeg:
-        response = await asyncio.gather(
-            *(get_info_with_speed(url_info) for url_info in infoList)
+    semaphore = asyncio.Semaphore(20)
+    response = await asyncio.gather(
+        *(
+            get_speed_by_info(
+                url_info, ffmpeg, semaphore, ipv6_proxy=ipv6_proxy, callback=callback
+            )
+            for url_info in data
         )
-        valid_response = [res for res in response if res != float("inf")]
-    else:
-        response_times = await asyncio.gather(
-            *(get_speed(url) for url, _, _ in infoList)
-        )
-        valid_response = [
-            (info, rt)
-            for info, rt in zip(infoList, response_times)
-            if rt != float("inf")
-        ]
-
-    def extract_resolution(resolution_str):
-        numbers = re.findall(r"\d+x\d+", resolution_str)
-        if numbers:
-            width, height = map(int, numbers[0].split("x"))
-            return width * height
-        else:
-            return 0
-
-    default_response_time_weight = 0.5
-    default_resolution_weight = 0.5
-    response_time_weight = (
-        config.getfloat("Settings", "response_time_weight")
-        or default_response_time_weight
     )
-    resolution_weight = (
-        config.getfloat("Settings", "resolution_weight") or default_resolution_weight
-    )
-    # Check if weights are valid
-    if not (
-        0 <= response_time_weight <= 1
-        and 0 <= resolution_weight <= 1
-        and response_time_weight + resolution_weight == 1
-    ):
-        response_time_weight = default_response_time_weight
-        resolution_weight = default_resolution_weight
+    valid_response = [res for res in response if res != float("inf")]
 
     def combined_key(item):
-        (_, _, resolution), response_time = item
-        resolution_value = extract_resolution(resolution) if resolution else 0
+        (_, _, resolution, _), response_time = item
+        resolution_value = get_resolution_value(resolution) if resolution else 0
         return (
-            -(response_time_weight * response_time)
-            + resolution_weight * resolution_value
+            -(config.response_time_weight * response_time)
+            + config.resolution_weight * resolution_value
         )
 
     sorted_res = sorted(valid_response, key=combined_key, reverse=True)

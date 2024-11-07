@@ -4,13 +4,16 @@ import os
 sys.path.append(os.path.dirname(sys.path[0]))
 import tkinter as tk
 from tkinter import messagebox
-from utils.config import config, resource_path, save_config
+from PIL import Image, ImageTk
+from utils.config import config
+from utils.tools import resource_path
 from main import UpdateSource
 import asyncio
 import threading
 import webbrowser
 from about import AboutUI
 from default import DefaultUI
+from prefer import PreferUI
 from multicast import MulticastUI
 from hotel import HotelUI
 from subscribe import SubscribeUI
@@ -27,6 +30,7 @@ class TkinterUI:
         self.version = info.get("version", "")
         self.about_ui = AboutUI()
         self.default_ui = DefaultUI()
+        self.prefer_ui = PreferUI()
         self.multicast_ui = MulticastUI()
         self.hotel_ui = HotelUI()
         self.subscribe_ui = SubscribeUI()
@@ -43,15 +47,16 @@ class TkinterUI:
             "open_update": self.default_ui.open_update_var.get(),
             "open_use_old_result": self.default_ui.open_use_old_result_var.get(),
             "source_file": self.default_ui.source_file_entry.get(),
-            "source_channels": self.default_ui.source_channels_text.get(1.0, tk.END),
             "final_file": self.default_ui.final_file_entry.get(),
             "urls_limit": self.default_ui.urls_limit_entry.get(),
             "open_driver": self.default_ui.open_driver_var.get(),
             "open_proxy": self.default_ui.open_proxy_var.get(),
             "open_keep_all": self.default_ui.open_keep_all_var.get(),
             "open_sort": self.default_ui.open_sort_var.get(),
-            "response_time_weight": self.default_ui.response_time_weight_entry.get(),
-            "resolution_weight": self.default_ui.resolution_weight_entry.get(),
+            "open_filter_resolution": self.default_ui.open_filter_resolution_var.get(),
+            "min_resolution": self.default_ui.min_resolution_entry.get(),
+            "response_time_weight": self.default_ui.response_time_weight_scale.get(),
+            "resolution_weight": self.default_ui.resolution_weight_scale.get(),
             "ipv_type": self.default_ui.ipv_type_combo.get(),
             "domain_blacklist": self.default_ui.domain_blacklist_text.get(1.0, tk.END),
             "url_keywords_blacklist": self.default_ui.url_keywords_blacklist_text.get(
@@ -60,6 +65,8 @@ class TkinterUI:
             "open_subscribe": self.subscribe_ui.open_subscribe_var.get(),
             "subscribe_urls": self.subscribe_ui.subscribe_urls_text.get(1.0, tk.END),
             "open_multicast": self.multicast_ui.open_multicast_var.get(),
+            "open_multicast_tonkiang": self.multicast_ui.open_multicast_tonkiang_var.get(),
+            "open_multicast_fofa": self.multicast_ui.open_multicast_fofa_var.get(),
             "multicast_region_list": self.multicast_ui.region_list_combo.get(),
             "multicast_page_num": self.multicast_ui.page_num_entry.get(),
             "open_hotel": self.hotel_ui.open_hotel_var.get(),
@@ -70,15 +77,17 @@ class TkinterUI:
             "open_online_search": self.online_search_ui.open_online_search_var.get(),
             "online_search_page_num": self.online_search_ui.page_num_entry.get(),
             "recent_days": self.online_search_ui.recent_days_entry.get(),
+            "open_update_time": self.default_ui.open_update_time_var.get(),
         }
 
         for key, value in config_values.items():
             config.set("Settings", key, str(value))
-        save_config()
+        config.save()
         messagebox.showinfo("提示", "保存成功")
 
     def change_state(self, state):
         self.default_ui.change_entry_state(state=state)
+        self.prefer_ui.change_entry_state(state=state)
         self.multicast_ui.change_entry_state(state=state)
         self.hotel_ui.change_entry_state(state=state)
         self.subscribe_ui.change_entry_state(state=state)
@@ -143,18 +152,64 @@ class TkinterUI:
         notebook.pack(fill="both", padx=10, pady=5)
 
         frame_default = tk.ttk.Frame(notebook)
-        frame_multicast = tk.ttk.Frame(notebook)
+        frame_prefer = tk.ttk.Frame(notebook)
         frame_hotel = tk.ttk.Frame(notebook)
+        frame_multicast = tk.ttk.Frame(notebook)
         frame_subscribe = tk.ttk.Frame(notebook)
         frame_online_search = tk.ttk.Frame(notebook)
 
-        notebook.add(frame_default, text="通用设置")
-        notebook.add(frame_multicast, text="组播源")
-        notebook.add(frame_hotel, text="酒店源")
-        notebook.add(frame_subscribe, text="订阅源")
-        notebook.add(frame_online_search, text="在线搜索")
+        settings_icon_source = Image.open(
+            resource_path("static/images/settings_icon.png")
+        ).resize((16, 16))
+        settings_icon = ImageTk.PhotoImage(settings_icon_source)
+        prefer_icon_source = Image.open(
+            resource_path("static/images/prefer_icon.png")
+        ).resize((16, 16))
+        prefer_icon = ImageTk.PhotoImage(prefer_icon_source)
+        hotel_icon_source = Image.open(
+            resource_path("static/images/hotel_icon.png")
+        ).resize((16, 16))
+        hotel_icon = ImageTk.PhotoImage(hotel_icon_source)
+        multicast_icon_source = Image.open(
+            resource_path("static/images/multicast_icon.png")
+        ).resize((16, 16))
+        multicast_icon = ImageTk.PhotoImage(multicast_icon_source)
+        subscribe_icon_source = Image.open(
+            resource_path("static/images/subscribe_icon.png")
+        ).resize((16, 16))
+        subscribe_icon = ImageTk.PhotoImage(subscribe_icon_source)
+        online_search_icon_source = Image.open(
+            resource_path("static/images/online_search_icon.png")
+        ).resize((16, 16))
+        online_search_icon = ImageTk.PhotoImage(online_search_icon_source)
+
+        notebook.add(
+            frame_default, text="通用设置", image=settings_icon, compound=tk.LEFT
+        )
+        notebook.add(frame_prefer, text="偏好设置", image=prefer_icon, compound=tk.LEFT)
+        notebook.add(frame_hotel, text="酒店源", image=hotel_icon, compound=tk.LEFT)
+        notebook.add(
+            frame_multicast, text="组播源", image=multicast_icon, compound=tk.LEFT
+        )
+        notebook.add(
+            frame_subscribe, text="订阅源", image=subscribe_icon, compound=tk.LEFT
+        )
+        notebook.add(
+            frame_online_search,
+            text="关键字搜索",
+            image=online_search_icon,
+            compound=tk.LEFT,
+        )
+
+        notebook.settings_icon = settings_icon
+        notebook.prefer_icon = prefer_icon
+        notebook.hotel_icon = hotel_icon
+        notebook.multicast_icon = multicast_icon
+        notebook.subscribe_icon = subscribe_icon
+        notebook.online_search_icon = online_search_icon
 
         self.default_ui.init_ui(frame_default)
+        self.prefer_ui.init_ui(frame_prefer)
         self.multicast_ui.init_ui(frame_multicast)
         self.hotel_ui.init_ui(frame_hotel)
         self.subscribe_ui.init_ui(frame_subscribe)
@@ -214,4 +269,5 @@ if __name__ == "__main__":
     screen_height = root.winfo_screenheight()
     root.geometry("%dx%d+%d+%d" % get_root_location(root))
     root.iconbitmap(resource_path("static/images/favicon.ico"))
+    root.after(0, config.copy)
     root.mainloop()

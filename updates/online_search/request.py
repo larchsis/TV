@@ -1,18 +1,25 @@
 from asyncio import create_task, gather
+from utils.config import config
+import utils.constants as constants
 from utils.speed import get_speed
 from utils.channel import (
     format_channel_name,
     get_results_from_soup,
     get_results_from_soup_requests,
 )
-from utils.tools import check_url_by_patterns, get_pbar_remaining, get_soup
-from utils.config import config
+from utils.tools import (
+    check_url_by_patterns,
+    get_pbar_remaining,
+    get_soup,
+    format_url_with_cache,
+    add_url_info,
+)
 from updates.proxy import get_proxy, get_proxy_next
-from time import time, sleep
+from time import time
 from driver.setup import setup_driver
+from driver.utils import search_submit
 from utils.retry import (
     retry_func,
-    locate_element_with_retry,
     find_clickable_element_with_retry,
 )
 from selenium.webdriver.common.by import By
@@ -25,13 +32,13 @@ async def use_accessible_url(callback):
     """
     Check if the url is accessible
     """
-    callback(f"正在获取最优的在线检索节点", 0)
+    callback(f"正在获取最优的关键字搜索节点", 0)
     baseUrl1 = "https://www.foodieguide.com/iptvsearch/"
     baseUrl2 = "http://tonkiang.us/"
-    task1 = create_task(get_speed(baseUrl1, timeout=30))
-    task2 = create_task(get_speed(baseUrl2, timeout=30))
+    task1 = create_task(get_speed(baseUrl1, timeout=config.request_timeout))
+    task2 = create_task(get_speed(baseUrl2, timeout=config.request_timeout))
     task_results = await gather(task1, task2)
-    callback(f"获取在线检索节点完成", 100)
+    callback(f"获取关键字搜索节点完成", 100)
     if task_results[0] == float("inf") and task_results[1] == float("inf"):
         return None
     if task_results[0] < task_results[1]:
@@ -40,25 +47,7 @@ async def use_accessible_url(callback):
         return baseUrl2
 
 
-def search_submit(driver, name):
-    """
-    Input key word and submit with driver
-    """
-    search_box = locate_element_with_retry(driver, (By.XPATH, '//input[@type="text"]'))
-    if not search_box:
-        return
-    search_box.clear()
-    search_box.send_keys(name)
-    submit_button = find_clickable_element_with_retry(
-        driver, (By.XPATH, '//input[@type="submit"]')
-    )
-    if not submit_button:
-        return
-    sleep(1)
-    driver.execute_script("arguments[0].click();", submit_button)
-
-
-async def get_channels_by_online_search(names, callback):
+async def get_channels_by_online_search(names, callback=None):
     """
     Get the channels by online search
     """
@@ -68,16 +57,18 @@ async def get_channels_by_online_search(names, callback):
     if not pageUrl:
         return channels
     proxy = None
-    open_proxy = config.getboolean("Settings", "open_proxy")
-    open_driver = config.getboolean("Settings", "open_driver")
-    page_num = config.getint("Settings", "online_search_page_num")
+    open_proxy = config.open_proxy
+    open_driver = config.open_driver
+    page_num = config.online_search_page_num
     if open_proxy:
         proxy = await get_proxy(pageUrl, best=True, with_test=True)
     start_time = time()
+    online_search_name = constants.origin_map["online_search"]
 
     def process_channel_by_online_search(name):
-        nonlocal proxy, open_proxy, open_driver, page_num
+        nonlocal proxy
         info_list = []
+        driver = None
         try:
             if open_driver:
                 driver = setup_driver(proxy)
@@ -126,7 +117,6 @@ async def get_channels_by_online_search(names, callback):
                                 )
                                 if not page_link:
                                     break
-                                sleep(1)
                                 driver.execute_script(
                                     "arguments[0].click();", page_link
                                 )
@@ -136,11 +126,13 @@ async def get_channels_by_online_search(names, callback):
                                     lambda: get_soup_requests(request_url, proxy=proxy),
                                     name=f"online search:{name}, page:{page}",
                                 )
-                        sleep(1)
                         soup = (
                             get_soup(driver.page_source) if open_driver else page_soup
                         )
                         if soup:
+                            if "About 0 results" in soup.text:
+                                retries += 1
+                                continue
                             results = (
                                 get_results_from_soup(soup, name)
                                 if open_driver
@@ -177,11 +169,13 @@ async def get_channels_by_online_search(names, callback):
                             for result in results:
                                 url, date, resolution = result
                                 if url and check_url_by_patterns(url):
+                                    url = add_url_info(url, online_search_name)
+                                    url = format_url_with_cache(url)
                                     info_list.append((url, date, resolution))
                             break
                         else:
                             print(
-                                f"{name}:No results found, refreshing page and retrying..."
+                                f"{name}:No page soup found, refreshing page and retrying..."
                             )
                             if open_driver:
                                 driver.refresh()
@@ -196,19 +190,21 @@ async def get_channels_by_online_search(names, callback):
             print(f"{name}:Error on search: {e}")
             pass
         finally:
-            if open_driver:
+            if driver:
                 driver.close()
                 driver.quit()
             pbar.update()
-            callback(
-                f"正在线上查询更新, 剩余{names_len - pbar.n}个频道待查询, 预计剩余时间: {get_pbar_remaining(n=pbar.n, total=pbar.total, start_time=start_time)}",
-                int((pbar.n / names_len) * 100),
-            )
+            if callback:
+                callback(
+                    f"正在进行线上查询, 剩余{names_len - pbar.n}个频道待查询, 预计剩余时间: {get_pbar_remaining(n=pbar.n, total=pbar.total, start_time=start_time)}",
+                    int((pbar.n / names_len) * 100),
+                )
             return {"name": format_channel_name(name), "data": info_list}
 
     names_len = len(names)
     pbar = tqdm_asyncio(total=names_len, desc="Online search")
-    callback(f"正在线上查询更新, 共{names_len}个频道", 0)
+    if callback:
+        callback(f"正在进行线上查询, 共{names_len}个频道", 0)
     with ThreadPoolExecutor(max_workers=3) as executor:
         futures = [
             executor.submit(process_channel_by_online_search, name) for name in names
