@@ -1,5 +1,5 @@
 #EXTM3U x-tvg-url="https://live.fanmingming.com/e.xml"
-#EXTINF:-1 tvg-name="2024-11-11 06:09:24" tvg-logo="https://live.fanmingming.com/tv/2024-11-11 06:09:24.png" group-title="更新时间",2024-11-11 06:09:24
+#EXTINF:-1 tvg-name="2024-11-11 18:12:40" tvg-logo="https://live.fanmingming.com/tv/2024-11-11 18:12:40.png" group-title="更新时间",2024-11-11 18:12:40
 url
 #EXTINF:-1 tvg-name="新闻综合" tvg-logo="https://live.fanmingming.com/tv/新闻综合.png" group-title="更新时间",新闻综合
 http://[2409:8087:5e01:24::16]:6610/000000001000/2000000002000000005/index.m3u8?stbId=3&livemode=1&HlsProfileId=&channel-id=hnbblive&Contentid=2000000002000000005&IASHttpSessionId=OTT19019320240419154124000281$订阅源|IPv6
@@ -137,6 +137,8 @@ http://[2409:8087:74d9:21::6]/270000001322/69900158041111100000002199/index.m3u8
 http://[2409:8087:1a01:df::7005]/ottrrs.hl.chinamobile.com/PLTV/88888888/224/3221225738/index.m3u8$订阅源|IPv6
 #EXTINF:-1 tvg-name="纪实人文" tvg-logo="https://live.fanmingming.com/tv/纪实人文.png" group-title="更新时间",纪实人文
 http://[2409:8087:74d9:21::6]/000000001000PLTV/88888888/224/3221226174/index.m3u8$订阅源|IPv6
+#EXTINF:-1 tvg-name="纪实人文" tvg-logo="https://live.fanmingming.com/tv/纪实人文.png" group-title="更新时间",纪实人文
+http://[2409:8087:74d9:21::6]:80/270000001128/9900000528/index.m3u8$订阅源|IPv6
 #EXTINF:-1 tvg-name="纪实人文" tvg-logo="https://live.fanmingming.com/tv/纪实人文.png" group-title="更新时间",纪实人文
 http://kxrj.site:35455/itv/5000000004000010282.m3u8?cdn=bestzb$订阅源
 #EXTINF:-1 tvg-name="纪实人文" tvg-logo="https://live.fanmingming.com/tv/纪实人文.png" group-title="更新时间",纪实人文
@@ -3935,6 +3937,8 @@ http://180.159.68.190:9947/rtp/239.45.1.251:5140$上海电信组播源
 http://222.65.158.32:3255/rtp/239.45.1.251:5140$上海电信组播源
 #EXTINF:-1 tvg-name="康巴卫视" tvg-logo="https://live.fanmingming.com/tv/康巴卫视.png" group-title="更新时间",康巴卫视
 http://116.227.118.157:2066/rtp/239.45.1.251:5140$上海电信组播源
+#EXTINF:-1 tvg-name="中国天气" tvg-logo="https://live.fanmingming.com/tv/中国天气.png" group-title="更新时间",中国天气
+http://[2409:8087:5e08:24::11]:6610/000000001000/5000000005000031974/index.m3u8?channel-id=bestzb&Contentid=5000000005000031974&livemode=1&stbId=3$订阅源|IPv6
 #EXTINF:-1 tvg-name="中国天气" tvg-logo="https://live.fanmingming.com/tv/中国天气.png" group-title="更新时间",中国天气
 http://hls.weathertv.cn/tslslive/qCFIfHB/hls/live_sd.m3u8$订阅源
 #EXTINF:-1 tvg-name="中国天气" tvg-logo="https://live.fanmingming.com/tv/中国天气.png" group-title="更新时间",中国天气
