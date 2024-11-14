@@ -1,5 +1,5 @@
 #EXTM3U x-tvg-url="https://live.fanmingming.com/e.xml"
-#EXTINF:-1 tvg-name="2024-11-14 18:12:31" tvg-logo="https://live.fanmingming.com/tv/2024-11-14 18:12:31.png" group-title="更新时间",2024-11-14 18:12:31
+#EXTINF:-1 tvg-name="2024-11-15 06:09:53" tvg-logo="https://live.fanmingming.com/tv/2024-11-15 06:09:53.png" group-title="更新时间",2024-11-15 06:09:53
 url
 #EXTINF:-1 tvg-name="新闻综合" tvg-logo="https://live.fanmingming.com/tv/新闻综合.png" group-title="更新时间",新闻综合
 http://[2409:8087:5e01:24::16]:6610/000000001000/2000000002000000005/index.m3u8?stbId=3&livemode=1&HlsProfileId=&channel-id=hnbblive&Contentid=2000000002000000005&IASHttpSessionId=OTT19019320240419154124000281$订阅源|IPv6
@@ -403,6 +403,8 @@ http://wouu.net:9977/udp/239.93.42.30:5140$订阅源
 http://ha.xushining.com:50000/udp/225.1.1.146:5002$订阅源
 #EXTINF:-1 tvg-name="都市剧场" tvg-logo="https://live.fanmingming.com/tv/都市剧场.png" group-title="更新时间",都市剧场
 http://iptvrr.sh.chinamobile.com:6060/cms001/ch00000090990000001203/index.m3u8$订阅源
+#EXTINF:-1 tvg-name="都市剧场" tvg-logo="https://live.fanmingming.com/tv/都市剧场.png" group-title="更新时间",都市剧场
+http://117.161.12.124/live/program/live/dsjc8m/8000000/mnf.m3u8$订阅源
 #EXTINF:-1 tvg-name="都市剧场" tvg-logo="https://live.fanmingming.com/tv/都市剧场.png" group-title="更新时间",都市剧场
 http://116.226.28.205:8857/rtp/239.45.3.136:5140$上海电信组播源
 #EXTINF:-1 tvg-name="都市剧场" tvg-logo="https://live.fanmingming.com/tv/都市剧场.png" group-title="更新时间",都市剧场
