@@ -1,5 +1,5 @@
 更新时间,#genre#
-2024-11-20 06:09:42,url
+2024-11-20 18:12:34,url
 新闻综合,http://[2409:8087:5e01:24::16]:6610/000000001000/2000000002000000005/index.m3u8?stbId=3&livemode=1&HlsProfileId=&channel-id=hnbblive&Contentid=2000000002000000005&IASHttpSessionId=OTT19019320240419154124000281$订阅源|IPv6
 新闻综合,http://[2409:8087:74d9:21::6]/000000001000PLTV/88888888/224/3221226620/index.m3u8$订阅源|IPv6
 新闻综合,http://[2409:8087:5e08:24::11]:6610/000000001000/2000000002000000005/index.m3u8?stbId=3&livemode=1&HlsProfileId=&channel-id=hnbblive&Contentid=2000000002000000005&IASHttpSessionId=OTT19019320240419154124000281&yang-1989$订阅源|IPv6
@@ -157,6 +157,7 @@
 五星体育,http://[2409:8087:5e08:24::11]:6610/000000001000/5000000010000017540/1.m3u8?channel-id=bestzb&Contentid=5000000010000017540&livemode=1&stbId=3$订阅源|IPv6
 五星体育,http://[2409:8087:5e08:24::12]:6610/000000001000/2000000002000000007/index.m3u8?stbId=3&livemode=1&HlsProfileId=&channel-id=hnbblive&Contentid=2000000002000000007&IAShttpSessionId=OTT19019320240419154124000281$订阅源|IPv6
 五星体育,http://[2409:8087:1e03:21::42]:6610/cms001/ch00000090990000001018/index.m3u8?$订阅源|IPv6
+五星体育,http://[2409:8087:5e08:24::11]:6610/000000001000/2000000002000000007/index.m3u8?stbId=3&livemode=1&HlsProfileId=&channel-id=hnbblive&Contentid=2000000002000000007$订阅源|IPv6
 五星体育,http://111.31.22.3/cache.ott.fifalive.itv.cmvideo.cn/000000001000/2000000002000000007/1.m3u8?channel-id=hnbblive&Contentid=2000000002000000007&livemode=1&stbId=3$订阅源
 五星体育,http://gslbservzqhsw.itv.cmvideo.cn/5000000010000017540/1.m3u8?channel-id=bestzb&Contentid=5000000010000017540&livemode=1&stbId=3$订阅源
 五星体育,http://116.231.244.25:8888/udp/239.45.3.210:5140$订阅源
@@ -744,6 +745,7 @@ CGTN,http://116.227.118.157:2066/rtp/239.45.1.194:5140$上海电信组播源
 动漫秀场,http://[2409:8087:74d9:21::6]:80/000000001000PLTV/88888888/224/3221226197/index.m3u8$订阅源|IPv6
 动漫秀场,http://[2409:8087:5e00:24::1e]:6060/000000001000/5000000011000031113/1.m3u8$订阅源|IPv6
 动漫秀场,http://[2409:8087:74d9:21::6]:80/000000001000PLTV/88888888/224/3221226197/index.m3u8•IPV6『线路2』$订阅源|IPv6
+动漫秀场,http://[2409:8087:3c02:0021:0000:0001:0000:100a]:6410/shandong_cabletv.live.zte.com////CHANNEL00002000/index.m3u8?IASHttpSessionId=$订阅源|IPv6
 动漫秀场,http://110.177.146.152:888/udp/239.1.1.80:8080$订阅源|720x576
 动漫秀场,http://218.67.179.51:8888/udp/225.1.1.134:5002$订阅源|1920x1080
 动漫秀场,http://223.12.185.161:8083/udp/239.1.1.80:8080$订阅源
