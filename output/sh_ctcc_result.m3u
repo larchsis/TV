@@ -1,5 +1,5 @@
 #EXTM3U x-tvg-url="https://live.fanmingming.com/e.xml"
-#EXTINF:-1 tvg-name="2024-11-22 06:10:29" tvg-logo="https://live.fanmingming.com/tv/2024-11-22 06:10:29.png" group-title="更新时间",2024-11-22 06:10:29
+#EXTINF:-1 tvg-name="2024-11-22 18:12:52" tvg-logo="https://live.fanmingming.com/tv/2024-11-22 18:12:52.png" group-title="更新时间",2024-11-22 18:12:52
 url
 #EXTINF:-1 tvg-name="新闻综合" tvg-logo="https://live.fanmingming.com/tv/新闻综合.png" group-title="更新时间",新闻综合
 http://[2409:8087:5e01:24::16]:6610/000000001000/2000000002000000005/index.m3u8?stbId=3&livemode=1&HlsProfileId=&channel-id=hnbblive&Contentid=2000000002000000005&IASHttpSessionId=OTT19019320240419154124000281$订阅源|IPv6
@@ -116,6 +116,8 @@ http://222.64.122.73:3195/rtp/239.45.3.146:5140$上海电信组播源
 #EXTINF:-1 tvg-name="都市频道" tvg-logo="https://live.fanmingming.com/tv/都市频道.png" group-title="更新时间",都市频道
 http://116.226.31.83:9901/tsfile/live/1001_1.m3u8$订阅源
 #EXTINF:-1 tvg-name="都市频道" tvg-logo="https://live.fanmingming.com/tv/都市频道.png" group-title="更新时间",都市频道
+https://hlss.gstv.com.cn/49048r/4o7e76.flv$订阅源
+#EXTINF:-1 tvg-name="都市频道" tvg-logo="https://live.fanmingming.com/tv/都市频道.png" group-title="更新时间",都市频道
 http://116.226.28.205:8857/rtp/239.45.3.236:5140$上海电信组播源
 #EXTINF:-1 tvg-name="都市频道" tvg-logo="https://live.fanmingming.com/tv/都市频道.png" group-title="更新时间",都市频道
 http://222.64.122.73:5319/rtp/239.45.3.236:5140$上海电信组播源
@@ -171,6 +173,10 @@ http://218.67.179.51:8888/udp/225.1.2.25:5002$订阅源
 http://223.12.185.161:8082/udp/239.1.1.45:8045$订阅源
 #EXTINF:-1 tvg-name="纪实人文" tvg-logo="https://live.fanmingming.com/tv/纪实人文.png" group-title="更新时间",纪实人文
 http://223.12.185.161:8083/udp/239.1.1.45:8045$订阅源
+#EXTINF:-1 tvg-name="纪实人文" tvg-logo="https://live.fanmingming.com/tv/纪实人文.png" group-title="更新时间",纪实人文
+http://221.219.65.45:18888/udp/239.3.1.212:8060$订阅源
+#EXTINF:-1 tvg-name="纪实人文" tvg-logo="https://live.fanmingming.com/tv/纪实人文.png" group-title="更新时间",纪实人文
+http://115.171.216.91:4000/udp/225.1.8.53:8060$订阅源
 #EXTINF:-1 tvg-name="纪实人文" tvg-logo="https://live.fanmingming.com/tv/纪实人文.png" group-title="更新时间",纪实人文
 http://116.226.28.205:8857/rtp/239.45.3.212:5140$上海电信组播源
 #EXTINF:-1 tvg-name="纪实人文" tvg-logo="https://live.fanmingming.com/tv/纪实人文.png" group-title="更新时间",纪实人文
@@ -1574,6 +1580,8 @@ http://[2409:8087:5e08:24::12]:6610/000000001000/2000000002000000090/index.m3u8?
 #EXTINF:-1 tvg-name="东方财经" tvg-logo="https://live.fanmingming.com/tv/东方财经.png" group-title="更新时间",东方财经
 http://[2409:8087:3c02:21:0:1:0:100a]:6410/shandong_cabletv.live.zte.com////CHANNEL00002025/index.m3u8?IASHttpSessionId=$订阅源|IPv6
 #EXTINF:-1 tvg-name="东方财经" tvg-logo="https://live.fanmingming.com/tv/东方财经.png" group-title="更新时间",东方财经
+http://[2409:8087:3c02:0021:0000:0001:0000:100a]:6410/shandong_cabletv.live.zte.com////CHANNEL00002025/index.m3u8?IASHttpSessionId=$订阅源|IPv6
+#EXTINF:-1 tvg-name="东方财经" tvg-logo="https://live.fanmingming.com/tv/东方财经.png" group-title="更新时间",东方财经
 http://111.31.22.3/cache.ott.fifalive.itv.cmvideo.cn/000000001000/5000000007000010003/1.m3u8?channel-id=bestzb&Contentid=5000000007000010003&livemode=1&stbId=3$订阅源
 #EXTINF:-1 tvg-name="东方财经" tvg-logo="https://live.fanmingming.com/tv/东方财经.png" group-title="更新时间",东方财经
 http://110.177.146.152:888/udp/239.1.1.85:8085$订阅源|720x576
@@ -1677,6 +1685,14 @@ http://223.12.185.161:8082/udp/239.1.1.79:8079$订阅源
 http://223.12.185.161:8083/udp/239.1.1.79:8079$订阅源
 #EXTINF:-1 tvg-name="法治天地" tvg-logo="https://live.fanmingming.com/tv/法治天地.png" group-title="更新时间",法治天地
 http://180.97.247.27:8088/liveplay-kk.rtxapp.com/live/program/live/fztd8m/8000000/mnf.m3u8$订阅源
+#EXTINF:-1 tvg-name="法治天地" tvg-logo="https://live.fanmingming.com/tv/法治天地.png" group-title="更新时间",法治天地
+http://60.255.240.247:8090/live/fztx_4000.m3u8$订阅源
+#EXTINF:-1 tvg-name="法治天地" tvg-logo="https://live.fanmingming.com/tv/法治天地.png" group-title="更新时间",法治天地
+http://tvbox6.icu/tv/migu.php?id=fztd$订阅源
+#EXTINF:-1 tvg-name="法治天地" tvg-logo="https://live.fanmingming.com/tv/法治天地.png" group-title="更新时间",法治天地
+http://115.153.254.81/PLTV/88888888/224/3221225607/iptv7994.smil/index.m3u8?fmt=ts2hls$订阅源
+#EXTINF:-1 tvg-name="法治天地" tvg-logo="https://live.fanmingming.com/tv/法治天地.png" group-title="更新时间",法治天地
+http://tvbox6.com/tv/bfgd.php?id=162$订阅源
 #EXTINF:-1 tvg-name="法治天地" tvg-logo="https://live.fanmingming.com/tv/法治天地.png" group-title="更新时间",法治天地
 http://116.226.28.205:8857/rtp/239.45.1.46:5140$上海电信组播源
 #EXTINF:-1 tvg-name="法治天地" tvg-logo="https://live.fanmingming.com/tv/法治天地.png" group-title="更新时间",法治天地
