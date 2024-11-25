@@ -1,5 +1,5 @@
 更新时间,#genre#
-2024-11-25 06:09:49,url
+2024-11-25 18:13:25,url
 新闻综合,http://[2409:8087:5e01:24::16]:6610/000000001000/2000000002000000005/index.m3u8?stbId=3&livemode=1&HlsProfileId=&channel-id=hnbblive&Contentid=2000000002000000005&IASHttpSessionId=OTT19019320240419154124000281$订阅源|IPv6
 新闻综合,http://[2409:8087:74d9:21::6]/000000001000PLTV/88888888/224/3221226620/index.m3u8$订阅源|IPv6
 新闻综合,http://[2409:8087:5e08:24::11]:6610/000000001000/2000000002000000005/index.m3u8?stbId=3&livemode=1&HlsProfileId=&channel-id=hnbblive&Contentid=2000000002000000005&IASHttpSessionId=OTT19019320240419154124000281&yang-1989$订阅源|IPv6
@@ -792,6 +792,7 @@ CGTN,http://116.227.118.157:2066/rtp/239.45.1.194:5140$上海电信组播源
 东方财经,http://[2409:8087:5e08:24::12]:6610/000000001000/2000000002000000090/index.m3u8?stbId=3&livemode=1&HlsProfileId=&channel-id=hnbblive&Contentid=2000000002000000090&IAShttpSessionId=OTT19019320240419154124000281$订阅源|IPv6
 东方财经,http://[2409:8087:3c02:21:0:1:0:100a]:6410/shandong_cabletv.live.zte.com////CHANNEL00002025/index.m3u8?IASHttpSessionId=$订阅源|IPv6
 东方财经,http://[2409:8087:3c02:0021:0000:0001:0000:100a]:6410/shandong_cabletv.live.zte.com////CHANNEL00002025/index.m3u8?IASHttpSessionId=$订阅源|IPv6
+东方财经,http://[2409:8087:5e08:24::11]:6610/000000001000/5000000007000010003/1.m3u8?channel-id=bestzb&Contentid=5000000007000010003&livemode=1&stbId=3$订阅源|IPv6
 东方财经,http://111.31.22.3/cache.ott.fifalive.itv.cmvideo.cn/000000001000/5000000007000010003/1.m3u8?channel-id=bestzb&Contentid=5000000007000010003&livemode=1&stbId=3$订阅源
 东方财经,http://110.177.146.152:888/udp/239.1.1.85:8085$订阅源|720x576
 东方财经,http://kxrj.site:35455/itv/5000000007000010003.m3u8?cdn=bestzb$订阅源
@@ -823,6 +824,7 @@ CGTN,http://116.227.118.157:2066/rtp/239.45.1.194:5140$上海电信组播源
 七彩戏剧,http://iptvrr.sh.chinamobile.com:6060/cms001/ch00000090990000001308/index.m3u8$订阅源
 七彩戏剧,http://nas.hssvm.com:8888/udp/225.1.1.86:5002$订阅源
 七彩戏剧,http://182.92.109.190:1668/migu720/migu720.php?id=qcxj$订阅源
+七彩戏剧,http://z.b.bkpcp.top/m.php?id=qcxj$订阅源
 七彩戏剧,http://116.226.28.205:2812/rtp/239.45.3.61:5140$上海电信组播源
 七彩戏剧,http://222.64.122.73:3195/rtp/239.45.3.61:5140$上海电信组播源
 七彩戏剧,http://116.231.247.47:9370/rtp/239.45.3.61:5140$上海电信组播源
