@@ -1,5 +1,5 @@
 #EXTM3U x-tvg-url="https://live.fanmingming.com/e.xml"
-#EXTINF:-1 tvg-name="2024-11-28 06:09:53" tvg-logo="https://live.fanmingming.com/tv/2024-11-28 06:09:53.png" group-title="更新时间",2024-11-28 06:09:53
+#EXTINF:-1 tvg-name="2024-11-28 18:13:00" tvg-logo="https://live.fanmingming.com/tv/2024-11-28 18:13:00.png" group-title="更新时间",2024-11-28 18:13:00
 url
 #EXTINF:-1 tvg-name="新闻综合" tvg-logo="https://live.fanmingming.com/tv/新闻综合.png" group-title="更新时间",新闻综合
 http://[2409:8087:5e01:24::16]:6610/000000001000/2000000002000000005/index.m3u8?stbId=3&livemode=1&HlsProfileId=&channel-id=hnbblive&Contentid=2000000002000000005&IASHttpSessionId=OTT19019320240419154124000281$订阅源|IPv6
@@ -1667,6 +1667,10 @@ http://nas.hssvm.com:8888/udp/225.1.1.86:5002$订阅源
 http://182.92.109.190:1668/migu720/migu720.php?id=qcxj$订阅源
 #EXTINF:-1 tvg-name="七彩戏剧" tvg-logo="https://live.fanmingming.com/tv/七彩戏剧.png" group-title="更新时间",七彩戏剧
 http://z.b.bkpcp.top/m.php?id=qcxj$订阅源
+#EXTINF:-1 tvg-name="七彩戏剧" tvg-logo="https://live.fanmingming.com/tv/七彩戏剧.png" group-title="更新时间",七彩戏剧
+http://223.166.234.149:7777/tsfile/live/1034_1.m3u8$订阅源
+#EXTINF:-1 tvg-name="七彩戏剧" tvg-logo="https://live.fanmingming.com/tv/七彩戏剧.png" group-title="更新时间",七彩戏剧
+http://223.166.234.215:7777/tsfile/live/1034_1.m3u8$订阅源
 #EXTINF:-1 tvg-name="七彩戏剧" tvg-logo="https://live.fanmingming.com/tv/七彩戏剧.png" group-title="更新时间",七彩戏剧
 http://116.226.28.205:2812/rtp/239.45.3.61:5140$上海电信组播源
 #EXTINF:-1 tvg-name="七彩戏剧" tvg-logo="https://live.fanmingming.com/tv/七彩戏剧.png" group-title="更新时间",七彩戏剧
