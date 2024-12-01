@@ -1,5 +1,5 @@
 #EXTM3U x-tvg-url="https://live.fanmingming.com/e.xml"
-#EXTINF:-1 tvg-name="2024-12-01 06:09:22" tvg-logo="https://live.fanmingming.com/tv/2024-12-01 06:09:22.png" group-title="更新时间",2024-12-01 06:09:22
+#EXTINF:-1 tvg-name="2024-12-01 18:12:04" tvg-logo="https://live.fanmingming.com/tv/2024-12-01 18:12:04.png" group-title="更新时间",2024-12-01 18:12:04
 url
 #EXTINF:-1 tvg-name="新闻综合" tvg-logo="https://live.fanmingming.com/tv/新闻综合.png" group-title="更新时间",新闻综合
 http://[2409:8087:5e01:24::16]:6610/000000001000/2000000002000000005/index.m3u8?stbId=3&livemode=1&HlsProfileId=&channel-id=hnbblive&Contentid=2000000002000000005&IASHttpSessionId=OTT19019320240419154124000281$订阅源|IPv6
@@ -1485,6 +1485,8 @@ http://222.65.158.32:7323/rtp/239.45.3.52:5140$上海电信组播源
 http://61.173.147.160:6879/rtp/239.45.3.52:5140$上海电信组播源
 #EXTINF:-1 tvg-name="CGTN" tvg-logo="https://live.fanmingming.com/tv/CGTN.png" group-title="更新时间",CGTN
 https://0472.org/hls/cgtn.m3u8$订阅源|1280x720
+#EXTINF:-1 tvg-name="CGTN" tvg-logo="https://live.fanmingming.com/tv/CGTN.png" group-title="更新时间",CGTN
+https://pi.0472.org/tv/fct.php?auth=230918$订阅源
 #EXTINF:-1 tvg-name="CGTN" tvg-logo="https://live.fanmingming.com/tv/CGTN.png" group-title="更新时间",CGTN
 http://116.226.28.205:2812/rtp/239.45.1.194:5140$上海电信组播源
 #EXTINF:-1 tvg-name="CGTN" tvg-logo="https://live.fanmingming.com/tv/CGTN.png" group-title="更新时间",CGTN
