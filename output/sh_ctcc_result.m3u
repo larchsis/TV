@@ -1,5 +1,5 @@
 #EXTM3U x-tvg-url="https://live.fanmingming.com/e.xml"
-#EXTINF:-1 tvg-name="2024-12-27 06:10:10" tvg-logo="https://live.fanmingming.com/tv/2024-12-27 06:10:10.png" group-title="更新时间",2024-12-27 06:10:10
+#EXTINF:-1 tvg-name="2024-12-27 18:13:57" tvg-logo="https://live.fanmingming.com/tv/2024-12-27 18:13:57.png" group-title="更新时间",2024-12-27 18:13:57
 url
 #EXTINF:-1 tvg-name="新闻综合" tvg-logo="https://live.fanmingming.com/tv/新闻综合.png" group-title="更新时间",新闻综合
 http://[2409:8087:5e01:24::16]:6610/000000001000/2000000002000000005/index.m3u8?stbId=3&livemode=1&HlsProfileId=&channel-id=hnbblive&Contentid=2000000002000000005&IASHttpSessionId=OTT19019320240419154124000281$订阅源|IPv6
@@ -474,6 +474,8 @@ http://[2409:8087:5e08:24::11]:6610/000000001000/5000000011000031111/index.m3u8?
 #EXTINF:-1 tvg-name="都市剧场" tvg-logo="https://live.fanmingming.com/tv/都市剧场.png" group-title="更新时间",都市剧场
 http://[2409:8087:5e08:24::2]:6610/000000001000/5000000011000031111/index.m3u8?channel-id=bestzb&Contentid=5000000011000031111&livemode=1&stbId=3$订阅源|IPv6
 #EXTINF:-1 tvg-name="都市剧场" tvg-logo="https://live.fanmingming.com/tv/都市剧场.png" group-title="更新时间",都市剧场
+http://[2409:8087:74d6:22::7]:6410/000000001000PLTV/88888888/224/3221226176/index.m3u8?$订阅源|IPv6
+#EXTINF:-1 tvg-name="都市剧场" tvg-logo="https://live.fanmingming.com/tv/都市剧场.png" group-title="更新时间",都市剧场
 http://wouu.net:9977/udp/239.93.42.30:5140$订阅源
 #EXTINF:-1 tvg-name="都市剧场" tvg-logo="https://live.fanmingming.com/tv/都市剧场.png" group-title="更新时间",都市剧场
 http://ha.xushining.com:50000/udp/225.1.1.146:5002$订阅源
@@ -504,6 +506,8 @@ http://61.173.147.160:6879/rtp/239.45.3.136:5140$上海电信组播源
 #EXTINF:-1 tvg-name="欢笑剧场" tvg-logo="https://live.fanmingming.com/tv/欢笑剧场.png" group-title="更新时间",欢笑剧场
 http://[2409:8087:74d9:21::6]:80/000000001000PLTV/88888888/224/3221226203/index.m3u8$订阅源|IPv6
 #EXTINF:-1 tvg-name="欢笑剧场" tvg-logo="https://live.fanmingming.com/tv/欢笑剧场.png" group-title="更新时间",欢笑剧场
+http://[2409:8087:74d6:22::7]:6410/000000001000PLTV/88888888/224/3221226203/index.m3u8?$订阅源|IPv6
+#EXTINF:-1 tvg-name="欢笑剧场" tvg-logo="https://live.fanmingming.com/tv/欢笑剧场.png" group-title="更新时间",欢笑剧场
 http://iptvrr.sh.chinamobile.com:6060/cms001/ch00000090990000001193/index.m3u8$订阅源
 #EXTINF:-1 tvg-name="欢笑剧场" tvg-logo="https://live.fanmingming.com/tv/欢笑剧场.png" group-title="更新时间",欢笑剧场
 http://116.226.28.205:8857/rtp/239.45.3.196:5140$上海电信组播源
@@ -527,6 +531,8 @@ http://222.65.158.32:7323/rtp/239.45.3.196:5140$上海电信组播源
 http://61.173.147.160:6879/rtp/239.45.3.196:5140$上海电信组播源
 #EXTINF:-1 tvg-name="欢笑剧场（备）" tvg-logo="https://live.fanmingming.com/tv/欢笑剧场（备）.png" group-title="更新时间",欢笑剧场（备）
 http://[2409:8087:74d9:21::6]:80/000000001000PLTV/88888888/224/3221226203/index.m3u8$订阅源|IPv6
+#EXTINF:-1 tvg-name="欢笑剧场（备）" tvg-logo="https://live.fanmingming.com/tv/欢笑剧场（备）.png" group-title="更新时间",欢笑剧场（备）
+http://[2409:8087:74d6:22::7]:6410/000000001000PLTV/88888888/224/3221226203/index.m3u8?$订阅源|IPv6
 #EXTINF:-1 tvg-name="欢笑剧场（备）" tvg-logo="https://live.fanmingming.com/tv/欢笑剧场（备）.png" group-title="更新时间",欢笑剧场（备）
 http://iptvrr.sh.chinamobile.com:6060/cms001/ch00000090990000001193/index.m3u8$订阅源
 #EXTINF:-1 tvg-name="欢笑剧场（备）" tvg-logo="https://live.fanmingming.com/tv/欢笑剧场（备）.png" group-title="更新时间",欢笑剧场（备）
