@@ -2,8 +2,9 @@ name: 'Update schedule'
 
 on:
   schedule:
-    - cron: '0 22 * * *'
-    - cron: '0 10 * * *'
+    # - cron: '0 22 * * *' # 北京时间每日6:00
+    # - cron: '0 10 * * *' # 北京时间每日18:00
+    - cron: '0 9 * * *' # 北京时间每日17:00
   workflow_dispatch:
     branches:
       - master
